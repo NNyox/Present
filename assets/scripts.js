@@ -38,7 +38,7 @@ if (poetry == null) {
 //#endregion
 
 const transitionTime = parseInt(getComputedStyle(document.querySelector(":root")).getPropertyValue("--transition").replace("ms", ""));
-const head = window.location.origin + window.location.pathname.split("/").slice(1,2)[0] + "/";
+const head = window.location.origin + window.location.pathname.split("/").slice(1,2)[0];
 const queries = new URLSearchParams(window.location.search);
 const poem = parseInt(queries.get("p"));
 
