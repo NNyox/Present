@@ -38,7 +38,7 @@ if (poetry == null) {
 //#endregion
 
 const transitionTime = parseInt(getComputedStyle(document.querySelector(":root")).getPropertyValue("--transition").replace("ms", ""));
-const head = window.location.origin + "/" + window.location.pathname.split("/").slice(1,2)[0];
+const head = window.location.origin + window.location.pathname;
 const queries = new URLSearchParams(window.location.search);
 const poem = parseInt(queries.get("p"));
 
@@ -91,7 +91,7 @@ document.querySelector(".theme").addEventListener("click", () => {
 
 //#region retry
 document.querySelector(".retry").addEventListener("click", () => {
-  window.location.href = `${head}/index.html`;
+  window.location.href = `${head}index.html`;
 });
 //#endregion
 
@@ -182,12 +182,12 @@ function setGallery() {
     poemIndex.className = "center";
     poemIndex.style.margin = "0";
     poemPreview.appendChild(poemIndex)
-    poemPreview.style.backgroundImage = `url(${head}/assets/images/old-paper.png)`;
+    poemPreview.style.backgroundImage = `url(${head}assets/images/old-paper.png)`;
     poemIndex.textContent = i + 1;
     if (poetry[i][1] == true) {
       // poemPreview.style.backgroundImage = `url(${head}/assets/images/thumbnails/poem(1).png)`;
       poemPreview.addEventListener("click", () => {
-        window.location.href = `${head}/index.html?p=${i}`;
+        window.location.href = `${head}index.html?p=${i}`;
       });
     } else {
       poemPreview.style.filter = "contrast(15%)";
