@@ -182,7 +182,7 @@ function setGallery() {
     poemIndex.className = "center";
     poemIndex.style.margin = "0";
     poemPreview.appendChild(poemIndex)
-    poemPreview.style.backgroundImage = `url(${head}/assets/images/old-paper.png)`;
+    poemPreview.style.backgroundImage = `url(${window.location.origin}/assets/images/old-paper.png)`;
     poemIndex.textContent = i + 1;
     if (poetry[i][1] == true) {
       // poemPreview.style.backgroundImage = `url(${head}/assets/images/thumbnails/poem(1).png)`;
