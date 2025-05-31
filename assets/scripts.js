@@ -118,11 +118,11 @@ function setNewEnvelope() {
     poemSelected = poem;
   } else if (!isNaN(poem) && poetry[poem][1] == false) {
     poemSelected = null;
-    closeEnvelope("Aun no has desbloqueado este poema.");
+    closeEnvelope("Poema bloqueado.");
     return;
   } else if (isNaN(poem)) {
     poemSelected = poetry.findIndex(p => p[1] == false);
-    if (poemSelected == -1) { closeEnvelope("Ya no hay mas poemas."); return; }
+    if (poemSelected == -1) { closeEnvelope("Ya no hay más poemas."); return; }
   };
   if (poemSelected !== null) {
     paragraph.innerHTML = poetry[poemSelected][0];
@@ -133,7 +133,7 @@ function setNewEnvelope() {
     const hoursDay = 24 * 60 * 60 * 1000;
     if (elapsedTime < hoursDay) {
       const remainingHours = ((hoursDay - elapsedTime) / (1000 * 60 * 60)).toFixed();
-      closeEnvelope(`Tienes que esperar ${remainingHours} horas`);
+      closeEnvelope(`Tienes que esperar ${remainingHours} horas.`);
       return;
     };
   };
