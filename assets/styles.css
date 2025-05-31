@@ -84,6 +84,12 @@
   transform: translate(-50%, -50%);
   width: 100vw;
   /* filter: contrast(0); */
+} .text {
+  font-size: xx-large;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0 10%;
 } .remaining {
   width: 80%;
   text-align: center;
