@@ -135,6 +135,7 @@
   .content > .paragraph {
     font-family: var(--font);
     font-size: var(--fontSize);
+    opacity: var(--opacity);
     flex-grow: 1;
     margin: 0;
     display: grid;
