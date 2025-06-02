@@ -119,17 +119,16 @@
   box-sizing: border-box;
 }
   .content > .title {
-    --color1: transparent;
-    --color2: black;
-    height: auto;
-    text-emphasis: filled triangle rgba(255,0,0,0.7);
-    background-image: url('images/fluid.gif'); background-clip: text;background-size: cover;
-    text-align: center; font-weight: bolder; font-size: 45px;
-    color: var(--color1);
-    -webkit-text-stroke: 0.5px var(--color2);
+    text-emphasis: filled triangle rgba(255,0,0,0.7); text-align: center;
+    font-weight: bolder; font-size: 45px;
+    background: url('images/fluid.gif') no-repeat center center / cover;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.5px black;
+    color: transparent;
   }
     .content > .title > .heart {
-      color: rgba(255, 0, 0, 0.7);
+      -webkit-text-fill-color: rgba(255, 0, 0, 0.5);
     }
   .content > .paragraph {
     font-family: var(--font);
