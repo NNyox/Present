@@ -111,7 +111,6 @@
   display: flex;
   flex-direction: column;
   padding: 15%;
-  opacity: 0.7;
   letter-spacing: 0;
   font-weight: bold;
   text-align: center;
@@ -135,7 +134,6 @@
   .content > .paragraph {
     font-family: var(--font);
     font-size: var(--fontSize);
-    opacity: var(--opacity);
     flex-grow: 1;
     margin: 0;
     display: grid;
