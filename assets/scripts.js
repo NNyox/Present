@@ -132,8 +132,13 @@ function setNewEnvelope() {
     const elapsedTime = now - parseInt(lastEnvelope);
     const hoursDay = 24 * 60 * 60 * 1000;
     if (elapsedTime < hoursDay) {
-      const remainingHours = ((hoursDay - elapsedTime) / (1000 * 60 * 60)).toFixed();
-      closeEnvelope(`Tienes que esperar ${remainingHours} horas.`);
+      const remainingMs = hoursDay - elapsedTime;
+      const remainingHours = remainingMs / (1000 * 60 * 60);
+      if (remainingHours >= 1) {
+        closeEnvelope(`Tienes que esperar ${remainingHours.toFixed()} horas.`);
+      } else {
+        closeEnvelope(`Tienes que esperar ${Math.round(remainingHours * 60)} minutos.`);
+      }
       return;
     };
   };
