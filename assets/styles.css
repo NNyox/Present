@@ -3,6 +3,7 @@
   --transition: 500ms;
   --font: 'great vibes';
   --fontSize: larger;
+  --opacity: 0;
   --color1: white;
   --color2: black;
 } * {
@@ -99,11 +100,13 @@
   height: auto;
 } .letter {
   scale: var(--initialLetterScale);
+  opacity: var(--opacity);
   display: block;
   width: auto;
   height: auto;
 } .content {
   scale: var(--initialLetterScale);
+  opacity: var(--opacity);
   width: 100%; height: 100%;
   display: flex;
   flex-direction: column;
