@@ -123,11 +123,13 @@
     font-weight: bolder; font-size: 45px;
     background: url('images/fluid.gif') no-repeat center center / cover;
     background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.5);
     -webkit-text-stroke: 1px black;
     color: transparent;
   }
     .content > .title > .heart {
-      color: rgba(255, 0, 0, 0.5);
+      -webkit-text-fill-color: rgba(255, 0, 0, 0.5);
     }
   .content > .paragraph {
     font-family: var(--font);
