@@ -158,6 +158,7 @@ function setNewEnvelope() {
     } else {
       envelope.style.opacity = "0";
       setInRoot("--initialLetterScale", "1");
+      setInRoot("--opacity", "1");
       setTimeout(() => { envelope.style.display = "none" }, transitionTime);
       if (isNaN(poem)) {
         localStorage.setItem("lastEnvelope", now.toString());
