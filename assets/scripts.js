@@ -1,6 +1,97 @@
 function setInRoot(property, value) {
   return document.querySelector(":root").style.setProperty(property, value)
 }
+const transitionTime = parseInt(getComputedStyle(document.querySelector(":root")).getPropertyValue("--transition").replace("ms", ""));
+function wait(funct) {
+  setTimeout(funct, transitionTime);
+}
+let head = window.location.origin + window.location.pathname;
+if (!head.endsWith("index.html")) {
+  head += "index.html";
+};
+const queries = new URLSearchParams(window.location.search);
+const poem = parseInt(queries.get("p"));
+document.querySelectorAll("img").forEach((image) => {
+  image.addEventListener("contextmenu", e => e.preventDefault());
+});
+
+//#region particles
+const stars = {
+  "particles": {
+    "number": {
+      "value": 50,
+    },
+    "color": {
+      "value": "#F9C23C"
+    },
+    "shape": {
+      "type": "star"
+    },
+    "opacity": {
+      "value": 1
+    },
+    "size": {
+      "value": 5,
+      "random": true
+    },
+    "line_linked": {
+      "enable": false
+    },
+    "move": {
+      "speed": 15,
+      "random": false,
+      "direction": "bottom",
+      "straight": false,
+      "out_mode": "out"
+    }
+  },
+  "interactivity": {
+    "events": {
+      "onhover": {
+        "enable": false
+      },
+      "onclick": {
+        "enable": true
+      }
+    },
+  },
+  "retina_detect": false
+}; particlesJS("particle-js", stars);
+
+function centerExplosion() {
+  const canvas = document.getElementById("confetti");
+  const thisConfetti = confetti.create(canvas, {
+    resize: true,
+    useWorker: true,
+  });
+  const count = 150;
+  function colorRandom() {
+    return ("#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0"));
+  };
+
+  for (let i = 0; i < count; i++) {
+    thisConfetti({
+      origin: { x: 0.5, y: 0.5 },
+      particleCount: 1,
+      angle: Math.random() * 360,
+      spread: 0,
+      startVelocity: 30,
+      gravity: 0.5,
+      scalar: 1.25,
+      ticks: 150,
+      shapes: ["square"],
+      colors: Array(20).fill().map(() => colorRandom()),
+    });
+  };
+};
+//#endregion
+
+window.addEventListener("load", () => {
+  wait(() => {
+    document.querySelector(".loading-image").style.opacity = "0";
+    wait(() => document.querySelector(".loading-image").remove());
+  });
+});
 
 //#region poetry
 let defaultPoetry = [
@@ -37,18 +128,6 @@ if (poetry == null) {
 };
 //#endregion
 
-const transitionTime = parseInt(getComputedStyle(document.querySelector(":root")).getPropertyValue("--transition").replace("ms", ""));
-let head = window.location.origin + window.location.pathname;
-if (!head.endsWith("index.html")) {
-  head += "index.html";
-};
-const queries = new URLSearchParams(window.location.search);
-const poem = parseInt(queries.get("p"));
-
-document.querySelectorAll("img").forEach((image) => {
-  image.addEventListener("contextmenu", e => e.preventDefault())
-});
-
 //#region font
 cursive = true;
 document.querySelector(".font").addEventListener("click", () => {
@@ -65,6 +144,7 @@ document.querySelector(".font").addEventListener("click", () => {
 
 //#region gallery
 const gallery = document.querySelector(".gallery");
+const letters = gallery.querySelector(".letters");
 document.querySelector(".show-gallery").addEventListener("click", () => {
   gallery.style.opacity = "1";
   gallery.style.pointerEvents = "all";
@@ -72,10 +152,8 @@ document.querySelector(".show-gallery").addEventListener("click", () => {
 
 gallery.querySelector(".fa-x").addEventListener("click", () => {
   gallery.style.opacity = "0";
-  setTimeout(() => { gallery.style.pointerEvents = "none" }, transitionTime);
+  wait(() => gallery.style.pointerEvents = "none");
 });
-
-const letters = gallery.querySelector(".letters");
 //#endregion
 
 //#region theme
@@ -106,10 +184,10 @@ function setNewEnvelope() {
   const now = Date.now();
   let poemSelected;
   let rotateToRight = true;
-  let clicksRemains = 10;
+  let clicksRemains = 1;
 
   function closeEnvelope(text) {
-    envelope.style.pointerEvents = "none"
+    envelope.style.pointerEvents = "none";
     envelope.style.filter = "contrast(15%)";
     document.querySelector(".text").textContent = text;
   }
@@ -118,11 +196,11 @@ function setNewEnvelope() {
     poemSelected = poem;
   } else if (!isNaN(poem) && poetry[poem][1] == false) {
     poemSelected = null;
-    closeEnvelope("Poema bloqueado.");
+    closeEnvelope("Poema Bloqueado.");
     return;
   } else if (isNaN(poem)) {
     poemSelected = poetry.findIndex(p => p[1] == false);
-    if (poemSelected == -1) { closeEnvelope("Ya no hay más poemas."); return; }
+    if (poemSelected == -1) { closeEnvelope("Ya no hay mas poemas."); return; }
   };
   if (poemSelected !== null) {
     paragraph.innerHTML = poetry[poemSelected][0];
@@ -134,6 +212,7 @@ function setNewEnvelope() {
     if (elapsedTime < hoursDay) {
       const remainingMs = hoursDay - elapsedTime;
       const remainingHours = remainingMs / (1000 * 60 * 60);
+
       if (remainingHours >= 1) {
         closeEnvelope(`Tienes que esperar ${remainingHours.toFixed()} horas.`);
       } else {
@@ -142,6 +221,8 @@ function setNewEnvelope() {
       return;
     };
   };
+  //#region envelope active
+  explosionDone = false;
   envelope.addEventListener("click", detectClicks);
   function detectClicks() {
     if (clicksRemains > 0) {
@@ -159,14 +240,18 @@ function setNewEnvelope() {
       envelope.style.opacity = "0";
       setInRoot("--initialLetterScale", "1");
       setInRoot("--opacity", "1");
-      setTimeout(() => { envelope.style.display = "none" }, transitionTime);
+      if (!explosionDone) {centerExplosion(); explosionDone = true};
+      wait(() => envelope.remove());
       if (isNaN(poem)) {
         localStorage.setItem("lastEnvelope", now.toString());
-        poetry[poemSelected][1] = true; localStorage.setItem("lastPoem", poemSelected + 1); savePoetry(); setGallery();
+        poetry[poemSelected][1] = true; localStorage.setItem("lastPoem", poemSelected + 1);
+        savePoetry();
+        setGallery();
       };
     };
   };
 }; setNewEnvelope();
+//#endregion
 //#endregion
 
 //#region letter style
