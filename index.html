@@ -1,42 +1,60 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
-  <link rel="stylesheet" href="assets/styles.css">
-  <title>For You, My Love</title>
-</head>
-<body class="transition">
-  <section class="card center transition">
-    <img src="assets/images/old-paper.png" class="letter transition">
-    <div class="content transition">
-      <span class="title">꧁⟅<span class="heart">❤</span>⟆꧂</span>
-      <div class="paragraph"></div>
-    </div>
-  </section>
-
-  <img src="assets/images/old-letter.webp" class="envelope center transition">
-  <span class="text center"></span>
-
-  <section class="header">
-    <i class="font fa-regular fa-f"></i>
-    <i class="show-gallery fa-regular fa-envelope"></i>
-    <div class="void"></div>
-    <i class="retry fa-regular fa-redo-alt"></i>
-    <i class="theme fa-regular fa-adjust"></i>
-  </section>
-
-  <section class="gallery transition">
-    <div class="container">
-      <i class="fa-regular fa-x"></i>
-      <h1 class="gallery-title text-center">letters gallery</h1>
-      <div class="letters">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <title>For You, My Love</title>
+  </head>
+  <body class="transition">
+    <section class="card center transition">
+      <img src="assets/images/old-paper.png" class="letter transition" />
+      <div class="content transition">
+        <div class="title">꧁⟅<span class="heart">❤</span>⟆꧂</div>
+        <div class="paragraph"></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <script src="assets/scripts.js"></script>
-</body>
+    <img
+      src="assets/images/old-letter.webp"
+      class="envelope center transition"
+    />
+    <span class="text center"></span>
+
+    <section class="header">
+      <i class="font fa-regular fa-f"></i>
+      <i class="show-gallery fa-regular fa-envelope"></i>
+      <div class="void"></div>
+      <i class="retry fa-regular fa-redo-alt"></i>
+      <i class="theme fa-regular fa-adjust"></i>
+    </section>
+
+    <section class="gallery blur-background transition">
+      <div class="container">
+        <i class="fa-regular fa-x"></i>
+        <h1 class="gallery-title text-center">letters gallery</h1>
+        <div class="letters"></div>
+      </div>
+    </section>
+
+    <section class="loading-image blur-background transition">
+      <div id="particle-js"></div>
+      <span class="loading-text center">🌙</span>
+    </section>
+    <section class="confetti-container full">
+      <canvas id="confetti" style="width: 100%; height: 100%"></canvas>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="assets/scripts.js"></script>
+  </body>
 </html>
