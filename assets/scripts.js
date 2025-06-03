@@ -184,7 +184,7 @@ function setNewEnvelope() {
   const now = Date.now();
   let poemSelected;
   let rotateToRight = true;
-  let clicksRemains = 1;
+  let clicksRemains = 10;
 
   function closeEnvelope(text) {
     envelope.style.pointerEvents = "none";
