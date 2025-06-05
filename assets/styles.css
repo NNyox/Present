@@ -100,11 +100,16 @@ body {
   grid-template-columns: repeat(2, 50%);
   grid-auto-rows: 1fr;
 }
-.letters > * {
+.letter-thumbnail {
   position: relative;
+  background: url(images/old-paper.png) no-repeat center;
+  background-size: 60%;
   width: 100%;
   aspect-ratio: 1/1;
   color: black;
+}
+.letter-thumbnail > h1 {
+  margin: 0;
 }
 
 .header {
