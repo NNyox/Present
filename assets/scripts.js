@@ -184,7 +184,7 @@ function setNewEnvelope() {
   const now = Date.now();
   let poemSelected;
   let rotateToRight = true;
-  let clicksRemains = 10;
+  let clicksRemains = 1;
 
   function closeEnvelope(text) {
     envelope.style.pointerEvents = "none";
@@ -268,15 +268,10 @@ function setGallery() {
   gallery.querySelector(".letters").innerHTML = "";
   for (let i = 0; i < poetry.length; i++) {
     const poemPreview = document.createElement("div");
-    poemPreview.className = `letter${i}`;
-    poemPreview.style.backgroundSize = "contain";
-    poemPreview.style.backgroundRepeat = "no-repeat";
-    poemPreview.style.backgroundPosition = "center";
+    poemPreview.className = "letter-thumbnail";
     const poemIndex = document.createElement("h1");
     poemIndex.className = "center";
-    poemIndex.style.margin = "0";
     poemPreview.appendChild(poemIndex)
-    poemPreview.style.backgroundImage = `url(assets/images/old-paper.png)`;
     poemIndex.textContent = i + 1;
     if (poetry[i][1] == true) {
       // poemPreview.style.backgroundImage = `url(${head}/assets/images/thumbnails/poem(1).png)`;
